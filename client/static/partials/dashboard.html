@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Product</title>
+    <style media="screen">
+      .box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid grey;
+        display: inline-block;
+        padding: 5px;
+        margin: 2px;
+        border-radius: 10px;
+        vertical-align: top;
+        text-align: center;
+        overflow: auto;
+      }
+      img{
+        height:115px;
+        width: 180px;
+      }
+    </style>
+  </head>
+  <body>
+    <div ng-controller='dashboardController'>
+      <div class='col-md-3'>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search..." ng-model='test'>
+        </div>
+        <button type="button" class='btn btn-primary' ng-click='sensitiveSearch()'>Filter</button>
+        <br>
+      </div>
+      <div class='col-md-9'>
+        <div class="row">
+          <div ng-repeat='product in products | limitTo: productLimit | filter: myFilter' class='box'>
+            <img src="{{product.image}}"/>
+            <h4>{{product.name}}</h4>
+            <h6>({{product.quantity}} left)</h6>
+          </div>
+          <div class="row col-md-12 col-md-offset-4">
+            <a ng-click='increaseProducts()'><h4>Show More</h4></a>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Recent Orders</h3>
+          <p ng-repeat='order in orders | limitTo: orderLimit'>{{order.customer}} purchased {{order.quantity}} {{order.product}}s...( <span am-time-ago="order.created_at"></span>  ) </p>
+          <div class="row col-md-12 col-md-offset-4">
+            <a ng-click='increaseOrders()'><h4>Show All Orders</h4></a>
+          </div>
+        </div>
+        <div class="row">
+          <h3>New Customers</h3>
+          <p ng-repeat='customer in customers | limitTo: customerLimit'>{{customer.name}} joined the store ( <span am-time-ago="customer.created_at"></span>  ) </p>
+          <div class="row col-md-12 col-md-offset-4">
+            <a ng-click='increaseCustomers()'><h4>Show All Customers</h4></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

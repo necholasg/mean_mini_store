@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Customers</title>
+  </head>
+  <body>
+    <div class="container-fluid" ng-controller='customerController'>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <u>Add a new customer</u><br><br>
+          Customer Name: <input class="form-control" type="text" ng-model='newCustomer.name'>
+          <br>
+          <button type="button" class='btn btn-primary' ng-click='addCust()'>Add</button>
+          <hr>
+          <span ng-if="errors" style="color:red" ng-repeat='error in errors'>{{error}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <table class='table table-bordered table-striped'>
+            <tr>
+              <th>Customer Name</th>
+              <th>Created Date</th>
+              <th>Actions</th>
+            </tr>
+            <tr ng-repeat='customer in customers'>
+              <td>{{customer.name}}</td>
+              <td>{{customer.created_at | date:'MMMM dd, yyyy'}}</td>
+              <td><button type="button" ng-click='removeCust(customer)' class='btn btn-danger'>Remove</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

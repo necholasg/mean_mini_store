@@ -1,0 +1,10 @@
+{
+  "name": "Mini_Mean_Store",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "moment": "^2.11.2",
+    "mongoose": "^4.4.2",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Product</title>
+    <style media="screen">
+      .box{
+        width: 200px;
+        height: 200px;
+        border: 1px solid grey;
+        display: inline-block;
+        padding: 5px;
+        margin: 2px;
+        border-radius: 10px;
+        vertical-align: top;
+        text-align: center;
+        overflow: auto;
+      }
+      img{
+        height:115px;
+        width: 180px;
+      }
+    </style>
+  </head>
+  <body>
+    <div ng-controller='productsController'>
+      <div class='col-md-3'>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search..." ng-model='test'>
+        </div>
+          <button type="button" class='btn btn-primary' ng-model="myFilter" ng-click="sensitiveSearch()">Filter</button>
+        <br>
+        <u>Add a new product</u>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" ng-model='newProduct.name' placeholder='name...'>
+        </div>
+        <div class="form-group">
+          <label for="url">Image (url):</label>
+          <input type="url" name="url" class="form-control" ng-model='newProduct.image' placeholder="http://">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea name="description" rows="8" cols="40" ng-model='newProduct.description' class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Initial Quantity</label>
+          <select class="form-control" ng-model='newProduct.quantity' ng-options='number for number in numbers'><option value="" disabled>Select One</option></select>
+        </div>
+        <button type="button" class=" btn btn-primary" ng-click='addProduct()'>Create</button>
+      </div>
+      <div class='col-md-9'>
+        <div ng-repeat='product in products | filter: myFilter' class='box'>
+          <img src="{{product.image}}" alt="Cant find the image"/>
+          <h4>{{product.name}}</h4>
+          <h6>({{product.quantity}} left)</h6>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
